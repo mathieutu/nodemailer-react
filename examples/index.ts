@@ -1,7 +1,7 @@
 import { Mailer } from 'nodemailer-react'
 import Password from './Password'
 
-import { Mailer as MailerTS } from '../src'
+import { Mailer as MailerTS } from '../dist'
 
 const mailerConfig = {
   from: {
@@ -29,9 +29,9 @@ mailer.send('pass', {}, {
   attachments: [{ content: 'bar', filename: 'foo.txt' }],
 })
 
-const mailerTS = new MailerTS(mailerConfig, emailsList)
+const mailerTS = MailerTS(mailerConfig, emailsList)
 
-mailerTS.send('pass', {}, {
+mailerTS.send('pass1', { firstName: '', }, {
   to: 'foo@bar.fr',
   attachments: [{ content: 'bar', filename: 'foo.txt' }],
 })
