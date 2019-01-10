@@ -1,0 +1,42 @@
+{
+  "name": "nodemailer-react",
+  "version": "0.0.4",
+  "description": "A simple but powerful Nodemailer wrapper to send emails with React templates.",
+  "main": "dist/index.js",
+  "type": "dist/index.d.ts",
+  "repository": "https://github.com/mathieutu/nodemailer-react.git",
+  "author": "Mathieu TUDISCO <dev@mathieutu.ovh>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com//mathieutu/nodemailer-react/issues"
+  },
+  "homepage": "https://github.com//mathieutu/nodemailer-react",
+  "files": [
+    "dist/**/*"
+  ],
+  "scripts": {
+    "build": "rm -rf dist && tsc",
+    "lint": "tslint -p tsconfig.json",
+    "test": "echo \"No test for now\"",
+    "prepare": "npm run build",
+    "prepublishOnly": "npm test && npm run lint"
+  },
+  "dependencies": {
+    "@types/nodemailer": "^4.6.5",
+    "@types/react": ">= 15",
+    "@types/react-dom": ">= 15"
+  },
+  "devDependencies": {
+    "tslint": "^5.12.0",
+    "tslint-config-airbnb": "^5.11.1",
+    "typescript": "^3.2.2"
+  },
+  "peerDependencies": {
+    "nodemailer": "^5.1.1",
+    "react": ">= 15",
+    "react-dom": ">= 15"
+  },
+  "engines": {
+    "node": ">=6.0.0"
+  }
+}
