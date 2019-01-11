@@ -3,9 +3,11 @@ import Password from './Password'
 
 export default function sendEmail() {
   const mailerConfig = {
-    from: {
-      name: 'mathieutu',
-      email: 'dev@mathieutu.ovh',
+    defaults: {
+      from: {
+        name: 'mathieutu',
+        address: 'dev@mathieutu.ovh',
+      },
     },
     transport: {
       host: 'smtp.example.com',
