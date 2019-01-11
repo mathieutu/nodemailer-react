@@ -1,6 +1,6 @@
 {
   "name": "nodemailer-react",
-  "version": "0.0.4",
+  "version": "0.1.0",
   "description": "A simple but powerful Nodemailer wrapper to send emails with React templates.",
   "main": "dist/index.js",
   "type": "dist/index.d.ts",
