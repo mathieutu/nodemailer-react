@@ -2,7 +2,7 @@ import * as React from 'react'
 import { Email } from '../src'
 import Layout from './Layout'
 
-type InvoicesProps = {
+type Props = {
   firstName: string,
   lastName: string,
   newAccount: boolean,
@@ -10,7 +10,7 @@ type InvoicesProps = {
   brand: string,
 }
 
-const Password: Email<InvoicesProps> = ({ firstName, lastName, password, newAccount, brand }) => ({
+const Password: Email<Props> = ({ firstName, lastName, password, newAccount, brand }) => ({
   subject: newAccount ? `Welcome to ${brand}!` : `Your new ${brand} password.`,
   body: (
     <Layout title={`${firstName} ${lastName}`}>
