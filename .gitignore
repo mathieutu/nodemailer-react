@@ -1,2 +1,9 @@
 node_modules
 dist
+.idea
+
+# Logs
+logs
+*.log
+yarn-debug.log*
+yarn-error.log*
