@@ -1,6 +1,4 @@
-import {
-  createTransport, SendMailOptions, SentMessageInfo, Transporter,
-} from 'nodemailer'
+import { createTransport, SendMailOptions, SentMessageInfo, Transporter } from 'nodemailer'
 import { Options as TransportOptions } from 'nodemailer/lib/smtp-transport'
 import { ReactElement } from 'react'
 import { renderToStaticMarkup } from 'react-dom/server'
@@ -8,7 +6,7 @@ import { renderToStaticMarkup } from 'react-dom/server'
 const renderBody = <P>(body: ReactElement<P>): string => `<!DOCTYPE html>${renderToStaticMarkup(body)}`
 
 export type EmailConfig = {
-  transport: TransportOptions,
+  transport: TransportOptions | Transporter,
   defaults?: SendMailOptions,
 }
 
@@ -21,9 +19,16 @@ export type EmailsList = {
   [name: string]: Email<any>,
 }
 
+const createTransportFromConfig = ({ transport, defaults }: EmailConfig): Transporter => {
+  if ('sendMail' in transport) {
+    return transport
+  }
+
+  return createTransport(transport, defaults)
+}
+
 export const Mailer = <Emails extends EmailsList>(config: EmailConfig, emails: Emails) => {
-  const { transport: transportConfig, defaults } = config
-  const transport: Transporter = createTransport(transportConfig, defaults)
+  const transport: Transporter = createTransportFromConfig(config)
 
   const sendEmail = <TemplateName extends keyof Emails>(
     template: TemplateName,

@@ -15,5 +15,6 @@ module.exports = {
     'import/extensions': 'off',
     'global-require': 'off',
     'max-len': ['warn', 120],
+    'object-curly-newline': 'off',
   },
 }
