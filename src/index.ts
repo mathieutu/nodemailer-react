@@ -19,7 +19,7 @@ export type EmailsList = {
   [name: string]: Email<any>,
 }
 
-const createTransportFromConfig = ({ transport, defaults }: EmailConfig): Transporter => {
+const createTransporter = ({ transport, defaults }: EmailConfig): Transporter => {
   if ('sendMail' in transport) {
     return transport
   }
@@ -28,8 +28,16 @@ const createTransportFromConfig = ({ transport, defaults }: EmailConfig): Transp
 }
 
 export const Mailer = <Emails extends EmailsList>(config: EmailConfig, emails: Emails) => {
-  const transport: Transporter = createTransportFromConfig(config)
+  const transporter: Transporter = createTransporter(config)
 
+  /**
+   * Use the `send` method to send your emails
+   *
+   * @param {string} template Your email template name: key of the email in the record you've provided.
+   * @param {Object} props The props of your email component
+   * @param {Object} options The options of email (to, from, attachments, etc.)
+   * @return Promise
+   */
   const sendEmail = <TemplateName extends keyof Emails>(
     template: TemplateName,
     props: Parameters<Emails[TemplateName]>[0],
@@ -37,7 +45,7 @@ export const Mailer = <Emails extends EmailsList>(config: EmailConfig, emails: E
   ): Promise<SentMessageInfo> => {
     const { subject, body } = emails[template](props)
 
-    return transport.sendMail({ subject, html: renderBody(body), ...options })
+    return transporter.sendMail({ subject, html: renderBody(body), ...options })
   }
 
   return {

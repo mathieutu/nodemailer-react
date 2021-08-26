@@ -1,0 +1,20 @@
+{
+  "compilerOptions": {
+    "declaration": true,
+    "noResolve": false,
+    "module": "ESNext",
+    "moduleResolution": "Node",
+    "target": "es2017",
+    "experimentalDecorators": true,
+    "noUnusedLocals": true,
+    "strict": false,
+    "allowJs": true,
+    "skipLibCheck": true,
+    "jsx": "react-jsx",
+    "baseUrl": ".",
+    "paths": {
+      "nodemailer-react": ["../src"]
+    }
+  },
+
+}
