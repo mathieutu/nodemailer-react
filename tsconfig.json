@@ -13,7 +13,7 @@
     "strictNullChecks": true,
     "strictPropertyInitialization": true,
     "forceConsistentCasingInFileNames": true,
-    "outDir": "dist",
+    "outDir": "dist"
   },
   "files": ["./src/index.ts"]
 }
