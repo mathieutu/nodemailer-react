@@ -5,7 +5,7 @@
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
   "repository": "https://github.com/mathieutu/nodemailer-react.git",
-  "author": "Mathieu TUDISCO <dev@mathieutu.ovh>",
+  "author": "Mathieu TUDISCO <oss@mathieutu.dev>",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/mathieutu/nodemailer-react/issues"
@@ -16,9 +16,10 @@
   ],
   "scripts": {
     "build": "rm -rf dist && tsc",
-    "lint": "tslint -p tsconfig.json",
     "test": "peeky run",
     "test:open": "peeky open",
+    "lint": "eslint --ignore-path .gitignore --ext .ts --ext .jsx .",
+    "lint:fix": "yarn lint --fix",
     "prepare": "npm run build",
     "prepublishOnly": "npm test && npm run lint"
   },
@@ -30,9 +31,11 @@
     "nodemailer": "^6.6.3",
     "react": ">= 15",
     "react-dom": ">= 15",
-    "tslint": "^6.1.3",
-    "tslint-config-airbnb": "^5.11.2",
-    "typescript": "^4.3.5"
+    "typescript": "^4.3.5",
+    "eslint": "^7.19.0",
+    "eslint-config-airbnb-typescript": "^12.3.1",
+    "eslint-plugin-import": "^2.22.1",
+    "@typescript-eslint/eslint-plugin": "^4.14.2"
   },
   "peerDependencies": {
     "nodemailer": "^5.1.1",

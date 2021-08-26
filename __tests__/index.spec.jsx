@@ -1,5 +1,5 @@
-import mailerFactory, { Mailer } from '../src'
 import React from 'react'
+import mailerFactory, { Mailer } from '../src'
 
 const emailsList = {
   foo: ({ name }) => ({
@@ -14,7 +14,7 @@ const emailsList = {
 }
 
 describe('nodemailer-react', () => {
-  test('it sends an email with jsx transpiled', async () => {
+  it('sends an email with jsx transpiled', async () => {
     const mailer = Mailer({
       transport: { jsonTransport: true },
     }, emailsList)
@@ -28,11 +28,11 @@ describe('nodemailer-react', () => {
     expect(JSON.parse(message)).toMatchObject({
       to: [{ address: 'foo@bar', name: '' }],
       subject: '👋 Mathieu!',
-      html: `<!DOCTYPE html><div><p>Hi Mathieu!</p><p>Here&#x27;s your email!</p></div>`,
+      html: '<!DOCTYPE html><div><p>Hi Mathieu!</p><p>Here&#x27;s your email!</p></div>',
     })
   })
 
-  test('it export default the same Mailer', () => {
+  it('exports default the same Mailer', () => {
     expect(mailerFactory).toBe(Mailer)
   })
 })

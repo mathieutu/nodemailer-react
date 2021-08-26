@@ -10,7 +10,9 @@ type Props = {
   brand: string,
 }
 
-const Password: Email<Props> = ({ firstName, lastName, password, newAccount, brand }) => ({
+const Password: Email<Props> = ({
+  firstName, lastName, password, newAccount, brand,
+}) => ({
   subject: newAccount ? `Welcome to ${brand}!` : `Your new ${brand} password.`,
   body: (
     <Layout title={`${firstName} ${lastName}`}>
