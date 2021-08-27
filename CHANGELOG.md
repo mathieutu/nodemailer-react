@@ -1,5 +1,13 @@
 # Changelog
 
+<a name="1.0.1"></a>
+## 1.0.1 (2021-08-27)
+
+### Fix
+
+- 🏷️ Fix send return type. [[50208b7](https://github.com/mathieutu/nodemailer-react/commit/50208b7afbc3e296f5fbecdbc066763024c479f3)]
+
+
 <a name="1.0.0"></a>
 ## 1.0.0 (2021-08-27)
 
