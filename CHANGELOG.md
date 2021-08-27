@@ -1,5 +1,22 @@
 # Changelog
 
+<a name="1.0.0"></a>
+## 1.0.0 (2021-08-27)
+
+### Added
+
+- 🎉 Add the ability to pass directly a nodemailer transport object. [[b9a809c](https://github.com/mathieutu/nodemailer-react/commit/b9a809ce5f14988c35a2d613c96c094ba7ac0491)]
+- ✅ Add tests. [[a73704b](https://github.com/mathieutu/nodemailer-react/commit/a73704b3dc952dcbfedd52c626b9fabbdca2f2c4)]
+
+### Miscellaneous
+
+- 📝 Add Changelog. [[f1838e7](https://github.com/mathieutu/nodemailer-react/commit/f1838e711243be00ec4f2cadfee2ef103d5b8613)]
+- 👷 Add publish workflow. [[2739cb4](https://github.com/mathieutu/nodemailer-react/commit/2739cb469fd6187978b650878e8789e1d459e484)]
+- 📝 Improve Documentation. [[04a1b72](https://github.com/mathieutu/nodemailer-react/commit/04a1b7287e0d9caab48a9724f18343a2edd29af7)]
+- 📝 Improve example. [[0ce403b](https://github.com/mathieutu/nodemailer-react/commit/0ce403bb9e586e88b4ac591098d58bc5f46eb6db)]
+- 👷 Add test Github action. [[d5f45ad](https://github.com/mathieutu/nodemailer-react/commit/d5f45adc1ae4d14a10d2d98f75431ef3d8895298)]
+
+
 <a name="0.1.0"></a>
 ## 0.1.0 (2019-01-11)
 
