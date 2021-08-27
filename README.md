@@ -1,8 +1,7 @@
 # Nodemailer React
 
-## Abstract
 
-This package aims to simplify the use of Nodemailer, along with React templating. 
+This package aims to simplify the use of Nodemailer, along with React templating.
 
 ## Installation
 
@@ -10,58 +9,107 @@ This package aims to simplify the use of Nodemailer, along with React templating
 yarn add nodemailer-react
 ```
 
-This package need `react-dom` and `nodemailer` to work. You will also need `react` for your email templates.  
+This package has `nodemailer`, `react-dom` and `react` as Peer Dependencies,
+so you'll need to install them if you don't already have them:
+
+```bash
+yarn add nodemailer react-dom react
+```
 
 ## Usage
 
-**You can find a full example in [example](https://github.com/mathieutu/nodemailer-react/tree/master/example) folder**
+You can find a full example in the [example](./example) folder,
+or see the [tests](./__tests__) to have more details.
 
-You can instantiate and send emails by doing:
+### Configure your SMTP transport
+An object that defines your connection data.
+See https://nodemailer.com/smtp/#general-options for details.
+
 ```js
-    import { Mailer } from 'nodemailer-react'
-
-    const mailer = Mailer(mailerConfig, emailsList)
-  
-    mailer.send(templateName, props, nodeMailerMessage)
-```
-
-The Mailer Config is an object with 2 keys, typed according to:
-
-```typescript
-{
-    transport: NodeMailer SMTP Transport Options
-    defaults: Optional NodeMailer Message Options
+const transport = {
+  host: 'smtp.example.com',
+  secure: true,
+  auth: { user: 'username', pass: 'password' },
 }
 ```
 
-You can find more information about those in the nodemailer doc: 
-- [NodeMailer SMTP Transport Options](https://nodemailer.com/smtp/)
-- [NodeMailer Message Options](https://nodemailer.com/message/)
+### Configure your defaults
+An object that is going to be merged into every message object.
+This allows you to specify shared options, for example to set the same from address for every message.
+See https://nodemailer.com/message/#common-fields
 
-
-The Emails List is a mapping object. Each key is the template name, and each value is an Email function.
-The Email function take the props as parameter, and return an object with a `string` subject and a `ReactElement` body.
- 
-```typescript
-type EmailsList = {
-    [name: string]: Email;
-};
-
-type Email = (props) => {
-    subject: string;
-    body: ReactElement;
-};
+```js
+const defaults = {
+  from: "sender@server.com",
+}
 ```
 
-_This explanation seems to be laborious to understand (mostly because of my English, I'm sorry about that), 
-but the package is very easy to use, and [a full and simple example is present](https://github.com/mathieutu/nodemailer-react/tree/master/example)._
+### Create Email Components
+They are basically functions which can take an object of props in parameter and return an object with :
+- The `subject` of the email, as string.
+- The `body` of the email, as JSX (ReactElement).
 
-_Please feel free to make some issue or PR to improve it!_
+The have the following type:
+```ts
+type Email = (props: object) => ({
+  subject: string;
+  body: ReactElement;
+})
+```
+
+Example:
+
+```jsx
+export const WelcomeEmail = ({ firstName }) => ({
+  subject: `👋 ${firstName}`,
+  body: (
+    <div>
+      <p>Hello {firstName}!</p>
+      <p>Hope you'll enjoy the package!</p>
+    </div>
+  )
+})
+
+export const PasswordEmail = /* ... */
+export const ReminderEmail = /* ... */
+```
+
+### Instantiate the `Mailer` function.
+It takes your `transport` and `defaults` configuration as the first parameter,
+and a record of your emails components as the second.
+
+```js
+import { Mailer } from 'nodemailer-react'
+
+export const mailer = Mailer(
+  { transport, defaults },
+  { WelcomeEmail, PasswordEmail, ReminderEmail }
+)
+```
+
+_TIP: you can directly pass a transporter from nodemailer's `createTransport` method as first argument if you prefer._
+
+_TIP 2: you can alias your emails easily : `{ welcome: WelcomeEmail, pwd: PasswordEmail, ... }`._
+
+### Enjoy!
+Send mails in your application, by passing:
+- Your email template name: key of the email in the record you've provided to the Mailer.
+- The props of your email component.
+- The options of the email (to, from, attachments, etc.).
+  See https://nodemailer.com/message/#common-fields
+
+```js
+mailer.send('WelcomeEmail', { firstName: 'Mathieu' }, {
+  to: 'my@email.com'
+})
+```
+
+### Typescript
+Everything is fully typed, and you should have full autocompletion and type checking,
+within the options, but also components and props attached to them in `send` method.
 
 ## License
-
-This Nodemailer package is an open-sourced software licensed under the MIT license.
+This nodemailer-react package is an open-sourced software licensed under the MIT license.
 
 ## Contributing
-
-Issues and PRs are obviously welcomed and encouraged, as well for new features than documentation.
+Issues and PRs are obviously welcomed and encouraged, both for new features and documentation.
