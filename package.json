@@ -20,22 +20,25 @@
     "test:open": "peeky open",
     "lint": "eslint --ignore-path .gitignore --ext .ts --ext .jsx .",
     "lint:fix": "yarn lint --fix",
-    "prepare": "npm run build",
-    "prepublishOnly": "npm test && npm run lint"
+    "typecheck": "tsc --noEmit",
+    "prepare": "yarn build",
+    "prepublishOnly": "yarn typecheck && yarn test && yarn lint",
+    "changelog": "gitmoji-changelog"
   },
   "devDependencies": {
     "@peeky/cli": "^0.3.3",
     "@types/nodemailer": "^6.4.4",
     "@types/react": "^17.0.19",
     "@types/react-dom": "^17.0.9",
-    "nodemailer": "^6.6.3",
-    "react": ">= 15",
-    "react-dom": ">= 15",
-    "typescript": "^4.3.5",
+    "@typescript-eslint/eslint-plugin": "^4.14.2",
     "eslint": "^7.19.0",
     "eslint-config-airbnb-typescript": "^12.3.1",
     "eslint-plugin-import": "^2.22.1",
-    "@typescript-eslint/eslint-plugin": "^4.14.2"
+    "gitmoji-changelog": "^2.2.1",
+    "nodemailer": "^6.6.3",
+    "react": ">= 15",
+    "react-dom": ">= 15",
+    "typescript": "^4.3.5"
   },
   "peerDependencies": {
     "nodemailer": "^5.1.1",
