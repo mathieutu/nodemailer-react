@@ -1,5 +1,5 @@
-import { createTransport, SendMailOptions, SentMessageInfo, Transporter } from 'nodemailer'
-import { Options as TransportOptions } from 'nodemailer/lib/smtp-transport'
+import { createTransport, SendMailOptions, Transporter } from 'nodemailer'
+import { Options as TransportOptions, SentMessageInfo } from 'nodemailer/lib/smtp-transport'
 import { ReactElement } from 'react'
 import { renderToStaticMarkup } from 'react-dom/server'
 
