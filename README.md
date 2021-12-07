@@ -108,6 +108,11 @@ mailer.send('WelcomeEmail', { firstName: 'Mathieu' }, {
 Everything is fully typed, and you should have full autocompletion and type checking,
 within the options, but also components and props attached to them in `send` method.
 
+However, as Nodemailer does not publish its own types, be sure to install them from DefinitelyTyped repo:
+```bash
+yarn add -D @types/nodemailer
+```
+
 ## License
 This nodemailer-react package is an open-sourced software licensed under the MIT license.
 
