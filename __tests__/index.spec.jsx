@@ -55,4 +55,24 @@ describe('nodemailer-react', () => {
   it('exports default the same Mailer', () => {
     expect(mailerFactory).toBe(Mailer)
   })
+
+  it('allows to dump the message as json', async () => {
+    const mailer = Mailer({
+      transport: {
+        host: 'smtp.example.com',
+        auth: { user: 'username', pass: 'password' } },
+    }, emailsList)
+
+    const result = await mailer.toJson(
+      'foo',
+      { name: 'Mathieu' },
+      { to: 'foo@bar' },
+    )
+
+    expect(JSON.parse(result)).toMatchObject({
+      to: [{ address: 'foo@bar', name: '' }],
+      subject: '👋 Mathieu!',
+      html: '<!DOCTYPE html><div><p>Hi Mathieu!</p><p>Here&#x27;s your email!</p></div>',
+    })
+  })
 })
