@@ -54,6 +54,7 @@ The have the following type:
 type Email = (props: object) => ({
   subject: string;
   body: ReactElement;
+  text?: Mail.Options['text'];
 })
 ```
 
@@ -67,7 +68,8 @@ export const WelcomeEmail = ({ firstName }) => ({
       <p>Hello {firstName}!</p>
       <p>Hope you'll enjoy the package!</p>
     </div>
-  )
+  ),
+  text : `Hello ${firstName}! Hope you'll enjoy the package!`
 })
 
 export const PasswordEmail = /* ... */

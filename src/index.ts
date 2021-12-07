@@ -1,4 +1,5 @@
 import { createTransport, SendMailOptions, Transporter } from 'nodemailer'
+import * as Mail from 'nodemailer/lib/mailer'
 import { Options as TransportOptions, SentMessageInfo } from 'nodemailer/lib/smtp-transport'
 import { ReactElement } from 'react'
 import { renderToStaticMarkup } from 'react-dom/server'
@@ -13,6 +14,7 @@ export type EmailConfig = {
 export type Email<Props> = (props: Props) => {
   body: ReactElement<Props>,
   subject: string,
+  text?: Mail.Options['text']
 }
 
 export type EmailsList = {
@@ -43,9 +45,9 @@ export const Mailer = <Emails extends EmailsList>(config: EmailConfig, emails: E
     props: Parameters<Emails[TemplateName]>[0],
     options: SendMailOptions,
   ): Promise<SentMessageInfo> => {
-    const { subject, body } = emails[template](props)
+    const { subject, body, text } = emails[template](props)
 
-    return transporter.sendMail({ subject, html: renderBody(body), ...options })
+    return transporter.sendMail({ subject, html: renderBody(body), text, ...options })
   }
 
   return {

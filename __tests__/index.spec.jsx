@@ -2,6 +2,7 @@ import React from 'react'
 import { createTransport } from 'nodemailer'
 import mailerFactory, { Mailer } from '../src'
 
+
 const emailsList = {
   foo: ({ name }) => ({
     subject: `👋 ${name}!`,
@@ -11,6 +12,7 @@ const emailsList = {
         <p>Here's your email!</p>
       </div>
     ),
+    text: `Hi ${name}! Here's your email!`
   }),
 }
 
@@ -30,6 +32,7 @@ describe('nodemailer-react', () => {
       to: [{ address: 'foo@bar', name: '' }],
       subject: '👋 Mathieu!',
       html: '<!DOCTYPE html><div><p>Hi Mathieu!</p><p>Here&#x27;s your email!</p></div>',
+      text: 'Hi Mathieu! Here\'s your email!'
     })
   })
 
@@ -44,11 +47,13 @@ describe('nodemailer-react', () => {
       { to: 'foo@bar' },
     )
 
+
     expect(JSON.parse(message)).toMatchObject({
       to: [{ address: 'foo@bar', name: '' }],
       from: { address: 'my@email.com', name: '' },
       subject: '👋 Mathieu!',
       html: '<!DOCTYPE html><div><p>Hi Mathieu!</p><p>Here&#x27;s your email!</p></div>',
+      text: 'Hi Mathieu! Here\'s your email!'
     })
   })
 
