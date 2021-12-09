@@ -74,6 +74,28 @@ export const PasswordEmail = /* ... */
 export const ReminderEmail = /* ... */
 ```
 
+If you do not specify the text of the email it will be automatically filled in from the body of the email.
+
+If you don't want to put any text, you can specify it by putting the text undefined.
+
+Example :
+
+```jsx
+export const WelcomeEmail = ({ firstName }) => ({
+  subject: `👋 ${firstName}`,
+  body: (
+    <div>
+      <p>Hello {firstName}!</p>
+      <p>Hope you'll enjoy the package!</p>
+    </div>
+  ),
+  text: undefined
+})
+
+export const PasswordEmail = /* ... */
+export const ReminderEmail = /* ... */
+```
+
 ### Instantiate the `Mailer` function.
 It takes your `transport` and `defaults` configuration as the first parameter,
 and a record of your emails components as the second.
