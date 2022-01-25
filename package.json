@@ -15,7 +15,7 @@
     "dist/**/*"
   ],
   "scripts": {
-    "build": "rm -rf dist && tsc",
+    "build": "rimraf dist && tsc",
     "test": "peeky run",
     "test:open": "peeky open",
     "lint": "eslint --ignore-path .gitignore --ext .ts --ext .jsx .",
@@ -38,6 +38,7 @@
     "nodemailer": "^6.6.3",
     "react": ">= 15",
     "react-dom": ">= 15",
+    "rimraf": "^3.0.2",
     "typescript": "^4.3.5"
   },
   "peerDependencies": {
