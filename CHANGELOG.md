@@ -1,5 +1,16 @@
 # Changelog
 
+<a name="1.0.2"></a>
+## 1.0.2 (2022-01-25)
+
+### Fix
+
+- Bumped nodemailer peer dependency version (from 5.1.1 to 6.6.3)
+
+### Added
+
+- rimraf package, a multiplatform alternative to "rm -rf", changed package.json build script to use it.
+
 <a name="1.0.1"></a>
 ## 1.0.1 (2021-08-27)
 
