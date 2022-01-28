@@ -1,4 +1,5 @@
 import { createTransport, SendMailOptions, Transporter } from 'nodemailer'
+import JSONTransport = require('nodemailer/lib/json-transport')
 import { Options as TransportOptions, SentMessageInfo } from 'nodemailer/lib/smtp-transport'
 import { ReactElement } from 'react'
 import { renderToStaticMarkup } from 'react-dom/server'
@@ -48,8 +49,28 @@ export const Mailer = <Emails extends EmailsList>(config: EmailConfig, emails: E
     return transporter.sendMail({ subject, html: renderBody(body), ...options })
   }
 
+  /**
+   * Use the `toJson` method to convert your emails as JSON format
+   *
+   * this method use the same parameters as the 'send' method
+   * what change compare to 'send', is that you have to create a new transporter
+   */
+
+  const dumpJson = async <TemplateName extends keyof Emails> (
+    template: TemplateName,
+    props: Parameters<Emails[TemplateName]>[0],
+    options: SendMailOptions,
+  ): Promise<string> => {
+    const { subject, body } = emails[template](props)
+
+    const { message } = await createTransport({ jsonTransport: true }, config.defaults as JSONTransport.Options)
+      .sendMail({ subject, html: renderBody(body), ...options })
+
+    return message
+  }
   return {
     send: sendEmail,
+    toJson: dumpJson,
   }
 }
 

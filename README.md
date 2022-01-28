@@ -104,6 +104,17 @@ mailer.send('WelcomeEmail', { firstName: 'Mathieu' }, {
 })
 ```
 
+Convert your email as JSON:
+
+It's the same use as the previous method "send" but with "toJson",
+This method is used to show you your email as a JSON format. 
+
+```js
+mailer.toJson('WelcomeEmail', { firstName: 'Jordan' }, {
+  to: 'monica@samuel.com'
+})
+```
+
 ### Typescript
 Everything is fully typed, and you should have full autocompletion and type checking,
 within the options, but also components and props attached to them in `send` method.
