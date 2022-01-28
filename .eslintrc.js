@@ -1,5 +1,5 @@
 module.exports = {
-  extends: ['airbnb-typescript/base'],
+  extends: ['airbnb-base', 'airbnb-typescript/base'],
   globals: {
     describe: false,
     expect: false,
