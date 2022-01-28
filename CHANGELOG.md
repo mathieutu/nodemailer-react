@@ -1,5 +1,18 @@
 # Changelog
 
+<a name="1.0.2"></a>
+## 1.0.2 (2022-01-28)
+
+### Changed
+
+- 🚨 Update eslint config. [[d1573cf](https://github.com/mathieutu/nodemailer-react/commit/d1573cf3e430b9babf96c442a7cda7d1c4d13025)]
+- ⬆️ Upgrade dependencies. [[6d5a3c5](https://github.com/mathieutu/nodemailer-react/commit/6d5a3c541f96c5cff41594a19704b0af612a1ef7)]
+
+### Miscellaneous
+
+- 📝 Add nodemailer types mention in Readme. [[42ff676](https://github.com/mathieutu/nodemailer-react/commit/42ff676c1f99356dc8bf7f26cf073863d2ecf2b9)]
+
+
 <a name="1.0.1"></a>
 ## 1.0.1 (2021-08-27)
 
